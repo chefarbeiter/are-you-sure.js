@@ -1,0 +1,33 @@
+{
+  "name": "are-you-sure",
+  "version": "1.0.0",
+  "description": "Ask your users if they are sure without using modal dialogs or alerts",
+  "main": "index.js",
+  "scripts": {
+    "dist": "npm-run-all build minify",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm-run-all --aggregate-output --parallel build-*",
+    "build-js": "rollup --config rollup.config.js",
+    "build-css": "sass styles/:dist/ --no-source-map",
+    "minify": "npm-run-all --aggregate-output --parallel minify-*",
+    "minify-js": "terser --compress passes=2 --mangle --comments false --output dist/are-you-sure.bundle.min.js dist/are-you-sure.bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chefarbeiter/are-you-sure.js.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chefarbeiter/are-you-sure.js/issues"
+  },
+  "homepage": "https://github.com/chefarbeiter/are-you-sure.js#readme",
+  "devDependencies": {
+    "@floating-ui/dom": "^0.2.0",
+    "@rollup/plugin-node-resolve": "^13.1.3",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.67.2",
+    "sass": "^1.49.7",
+    "terser": "^5.10.0"
+  }
+}

@@ -1,0 +1,26 @@
+.are-you-sure {
+  background: lightgray;
+  display: block;
+  position: absolute;
+  padding: 10px 10px 5px 10px;
+  border-radius: 4px;
+  max-width: 250px;
+}
+
+.ays-arrow {
+  position: absolute;
+  background: lightgray;
+  width: 8px;
+  height: 8px;
+  transform: rotate(45deg);
+}
+
+.ays-actions {
+  margin-top: 5px;
+  display: flex;
+  justify-content: end;
+}
+
+.ays-no {
+  margin-left: 2px;
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>are-you-sure.js - Example</title>
+    <link href="../dist/headless.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+
+<body>
+
+    <button type="button" id="cancelButton" style="margin-top: 150px;margin-left:50px;"
+        class="button is-primary">Cancel</button>
+
+    <script src="../dist/are-you-sure.bundle.min.js"></script>
+    <script>
+        let cancelButton = document.getElementById("cancelButton");
+        let confirmation = new areYouSure.Confirmation(cancelButton, { placement: "right", style: "bulma" });
+    </script>
+</body>
+
+</html>
