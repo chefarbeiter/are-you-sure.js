@@ -17,9 +17,7 @@ describe('The configuration', function () {
         let fakeButton = document.createElement("button");
         let config = { style: 'tailwindcss' };
 
-        expect(() => new Confirmation(fakeButton, config)).toThrowMatching(error => error.startsWith('Style tailwindcss is unknown'));
-
-        let instance = new Confirmation(fakeButton, { placement: 'bottom' });
-        expect(instance._config.placement).toBe('bottom');
+        expect(() => new Confirmation(fakeButton, config))
+            .toThrowMatching(error => error.startsWith('Style tailwindcss is unknown'));
     });
 });
