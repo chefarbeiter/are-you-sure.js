@@ -8,7 +8,7 @@
     "test": "karma start tests/karma.conf.js",
     "build": "npm-run-all --aggregate-output --parallel build-*",
     "build-js": "rollup --config rollup.config.js",
-    "build-css": "sass styles/:dist/ --no-source-map",
+    "build-css": "sass styles/:dist/ --no-source-map --style=compressed",
     "minify": "npm-run-all --aggregate-output --parallel minify-*",
     "minify-js": "terser --compress passes=2 --mangle --comments false --output dist/are-you-sure.bundle.min.js dist/are-you-sure.bundle.js"
   },
