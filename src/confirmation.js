@@ -1,6 +1,6 @@
 import { computePosition, flip, shift, offset, arrow } from '@floating-ui/dom';
 
-const DIALOG_TEMPLATE = '<div class="are-you-sure"><div class="ays-arrow"></div><div class="ays-question"></div><div class="ays-actions"></div></div>';
+const DIALOG_TEMPLATE = '<div class="are-you-sure" id="ays-"><div class="ays-arrow"></div><div class="ays-question"></div><div class="ays-actions"></div></div>';
 const DefaultConfig = {
   question: 'Are you sure?',
   placement: 'top',
@@ -104,14 +104,17 @@ export class Confirmation {
     }
   }
 
+  static _dialogCounter = 1
+
   _addConfirmationDialog() {
     let body = document.getElementsByTagName("body")[0];
     let dialog = document.createElement("div");
     body.appendChild(dialog);
-    dialog.outerHTML = DIALOG_TEMPLATE;
+    let dialogId = `ays-${Confirmation._dialogCounter++}`;
+    dialog.outerHTML = DIALOG_TEMPLATE.replace("ays-", dialogId);
 
     // Variable must be reassigned after change of outerHTML
-    dialog = body.getElementsByClassName("are-you-sure")[0];
+    dialog = document.getElementById(dialogId);
     this._dialog = dialog;
 
     // Set Question
