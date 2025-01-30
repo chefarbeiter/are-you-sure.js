@@ -3,17 +3,17 @@
 
 <head>
     <title>are-you-sure.js - Example</title>
-    <link href="../dist/headless.css" rel="stylesheet">
+    <link href="../dist/are-you-sure.css" rel="stylesheet">
 </head>
 
 <body>
 
-    <button type="button" id="cancelButton" style="margin-top: 150px;margin-left:50px;">Cancel</button>
+    <button type="button" id="cancelButton" style="margin:50px;">Cancel</button>
 
     <script src="../dist/are-you-sure.bundle.min.js"></script>
     <script>
         let cancelButton = document.getElementById("cancelButton");
-        let confirmation = new areYouSure.Confirmation(cancelButton, { placement: "top" });
+        let confirmation = new areYouSure.Confirmation(cancelButton, { placement: "right" });
     </script>
 </body>
 

@@ -1,15 +1,16 @@
-import { Confirmation } from '../src/confirmation'
+import { Confirmation } from '../src/confirmation';
 
 describe('A button in the conformation dialog', function () {
     beforeEach(function () {
         let openDialogs = document.querySelectorAll(".are-you-sure");
         for (const dialog of openDialogs) {
-            dialog.remove()
+            dialog.remove();
         }
     });
 
     it("should close the confirmation if it is a cancel button", function () {
         let fakeButton = document.createElement("button");
+        document.body.append(fakeButton);
         let confirmation = new Confirmation(fakeButton);
         fakeButton.click();
 
@@ -25,6 +26,7 @@ describe('A button in the conformation dialog', function () {
 
     it("should close the confirmation if it is a confirm button", function () {
         let fakeButton = document.createElement("button");
+        document.body.append(fakeButton);
         let confirmation = new Confirmation(fakeButton);
         fakeButton.click();
 
@@ -40,6 +42,7 @@ describe('A button in the conformation dialog', function () {
 
     it("should call the onConfirm callback if it is a confirm button", function () {
         let fakeButton = document.createElement("button");
+        document.body.append(fakeButton);
         let confirmCallback = jasmine.createSpy("confirm");
         let dismissCallback = jasmine.createSpy("dismiss");
         let config = { onConfirm: confirmCallback, onDismiss: dismissCallback };
@@ -58,6 +61,7 @@ describe('A button in the conformation dialog', function () {
 
     it("should call the onDismiss callback if it is a cancel button", function () {
         let fakeButton = document.createElement("button");
+        document.body.append(fakeButton);
         let confirmCallback = jasmine.createSpy("confirm");
         let dismissCallback = jasmine.createSpy("dismiss");
         let config = { onConfirm: confirmCallback, onDismiss: dismissCallback };
@@ -77,6 +81,7 @@ describe('A button in the conformation dialog', function () {
 
     it("should call the onDismiss callback if it is a cancel button and not hide if the callback returns something", function () {
         let fakeButton = document.createElement("button");
+        document.body.append(fakeButton);
         let config = { onDismiss: () => "something" };
         let confirmation = new Confirmation(fakeButton, config);
         fakeButton.click();
@@ -93,6 +98,7 @@ describe('A button in the conformation dialog', function () {
 
     it("should call a custom callback", function () {
         let fakeButton = document.createElement("button");
+        document.body.append(fakeButton);
         let customCallback = jasmine.createSpy("callback");
         let config = {
             buttons: [{

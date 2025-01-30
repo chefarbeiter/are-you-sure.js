@@ -32,8 +32,8 @@ const Styles = {
     ".ays-no": ["btn", "btn-sm", "btn-danger", "ms-1"]
   },
   bulma: {
-    ".are-you-sure": ["has-background-grey-lighter", "border", "border-dark", "p-2"],
-    ".ays-arrow": ["has-background-grey-lighter", "border-start", "border-top", "border-dark"],
+    ".are-you-sure": ["has-background-light", "has-text-dark", "border", "border-dark", "p-2"],
+    ".ays-arrow": ["has-background-light", "border-start", "border-top", "border-dark"],
     ".ays-question": ["lead"],
     ".ays-actions": ["d-flex", "justify-content-end", "mt-2"],
     ".ays-yes": ["button", "is-success", "is-small"],
@@ -47,20 +47,20 @@ export class Confirmation {
 
     // Merge and validate configuration
     this._config = { ...DefaultConfig, ...(typeof config === 'object' ? config : {}) };
-    this._validateConfig();
+    this.#validateConfig();
 
     // Add the magic to the trigger button
-    this._initializeButton();
+    this.#initializeButton();
   }
 
-  _initializeButton() {
+  #initializeButton() {
     this._button.addEventListener("click", event => {
       // Only one confirmation popup per instance / button
       if (this._dialog) {
         return;
       }
 
-      this._addConfirmationDialog();
+      this.#addConfirmationDialog();
       let arrowElement = this._dialog.querySelector(".ays-arrow");
 
       computePosition(this._button, this._dialog, {
@@ -96,7 +96,7 @@ export class Confirmation {
     });
   }
 
-  _validateConfig() {
+  #validateConfig() {
     // Style must be known
     if (!Styles[this._config.style]) {
       let allowedStyles = Object.keys(Styles).join(", ");
@@ -104,9 +104,9 @@ export class Confirmation {
     }
   }
 
-  static _dialogCounter = 1
+  static _dialogCounter = 1;
 
-  _addConfirmationDialog() {
+  #addConfirmationDialog() {
     let body = document.getElementsByTagName("body")[0];
     let dialog = document.createElement("div");
     body.appendChild(dialog);
@@ -132,17 +132,17 @@ export class Confirmation {
       if (typeof button.onClick === 'function') {
         buttonDOM.addEventListener("click", button.onClick);
       } else {
-        buttonDOM.addEventListener("click", () => this._handleConfirmOrDismissClick.apply(this, [button.onClick]));
+        buttonDOM.addEventListener("click", () => this.#handleConfirmOrDismissClick.apply(this, [button.onClick]));
       }
 
       buttonContainer.appendChild(buttonDOM);
     }
 
     // Apply styling
-    this._applyStyle();
+    this.#applyStyle();
   }
 
-  _applyStyle() {
+  #applyStyle() {
     let styleChanges = Styles[this._config.style];
 
     for (let defaultClass in styleChanges) {
@@ -154,7 +154,7 @@ export class Confirmation {
     }
   }
 
-  _handleConfirmOrDismissClick(type) {
+  #handleConfirmOrDismissClick(type) {
     // Call the callback
     let callback = type === 'confirm' ? this._config.onConfirm : this._config.onDismiss;
 

@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
-const { babel } = require('@rollup/plugin-babel')
-const istanbul = require('rollup-plugin-istanbul')
-const { nodeResolve } = require('@rollup/plugin-node-resolve')
-const replace = require('@rollup/plugin-replace')
+const { babel } = require('@rollup/plugin-babel');
+const istanbul = require('rollup-plugin-istanbul');
+const { nodeResolve } = require('@rollup/plugin-node-resolve');
+const replace = require('@rollup/plugin-replace');
 
 module.exports = function (config) {
     config.set({
@@ -14,6 +14,7 @@ module.exports = function (config) {
             'karma-rollup-preprocessor',
             //            'karma-jasmine-html-reporter',
             'karma-chrome-launcher',
+            'karma-firefox-launcher',
             'karma-coverage-istanbul-reporter'
         ],
         preprocessors: {
@@ -65,8 +66,8 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_ERROR,
         autoWatch: false,
-        browsers: ['ChromeHeadless'],
+        browsers: ['Firefox', 'Chrome'],
         singleRun: true,
         concurrency: Infinity
-    })
-}
+    });
+};
